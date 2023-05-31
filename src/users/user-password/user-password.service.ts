@@ -3,7 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserPassword } from 'output/entities/UserPassword';
 import { Repository } from 'typeorm';
 import * as Bcrypt from 'bcrypt';
-const Salt = 10;
+
+const saltOrRounds = 10;
 
 @Injectable()
 export default class UserPasswordService {
@@ -55,8 +56,9 @@ export default class UserPasswordService {
     uspaUser,
   ) {
     try {
+      const hashpassword = await Bcrypt.hash(uspaPasswordhash, saltOrRounds);
       const userPassword = await this.serviceRepo.update(id, {
-        uspaPasswordhash: uspaPasswordhash,
+        uspaPasswordhash: hashpassword,
         uspaPasswordsalt: uspaPasswordsalt,
         uspaUser: uspaUser,
       });

@@ -25,7 +25,7 @@ export class UserController {
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Get('profile')
+  @Get('/profile')
   async getProfile(@Request() req) {
     return req.user;
   }

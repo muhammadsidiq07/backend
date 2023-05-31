@@ -13,7 +13,6 @@ export class UserProfilesService {
   public async findAll() {
     return await this.serviceRepo.find({
       relations: {
-        usproAddr: true,
         usproUser: true,
       },
     });
