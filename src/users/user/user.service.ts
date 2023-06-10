@@ -98,7 +98,7 @@ export class UserService {
         usproMartialStatus: fields.usproMartialStatus,
         usproGender: fields.usproGender,
       });
-      return profile;
+      return user;
     } catch (error) {
       return error.message;
     }
